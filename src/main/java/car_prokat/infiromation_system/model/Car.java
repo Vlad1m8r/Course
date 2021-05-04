@@ -49,7 +49,7 @@ public class Car {
     @NotNull
     private String carModelYear;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "car", orphanRemoval=false)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "car", orphanRemoval=true)
     private Contract contract;
 
     @JsonIgnore

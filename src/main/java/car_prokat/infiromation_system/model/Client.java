@@ -32,7 +32,7 @@ public class Client {
     @NotNull
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "client", orphanRemoval=false)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "client", orphanRemoval=true)
     private Contract contracts;
 
     @JsonIgnore
