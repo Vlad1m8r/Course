@@ -63,10 +63,7 @@ public class ContractController {
 
     //save contract
     @PostMapping("contracts")
-    public ResponseEntity<Contract> createContract(@Valid @RequestBody Contract contract, BindingResult bindingResult) throws ResourceNotFoundException {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Contract> createContract(@Valid @RequestBody Contract contract) throws ResourceNotFoundException {
 
         Car car = carRepository.findById(contract.getCar().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Driver not found for this id:: " + contract.getCar().getId()));
@@ -88,15 +85,12 @@ public class ContractController {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ResourceNotFoundException("Contract not found for this id:: " + contractId));
 
-        System.out.println("Here1");
         Car car = carRepository.findById(contractDetails.getCar().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Driver not found for this id:: " + contractDetails.getCar().getId()));
 
-        System.out.println("Here2");
         Client client = clientRepository.findById(contractDetails.getClient().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Client not found for this id:: " + contractDetails.getClient().getId()));
 
-        System.out.println("Here3");
 
         contract.setNumber(contractDetails.getNumber());
         contract.setDateStart(contractDetails.getDateStartSql());

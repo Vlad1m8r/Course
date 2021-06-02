@@ -64,6 +64,8 @@ public class Client {
 //        this.contracts = contracts;
 //    }
 
+
+
     public Long getId() {
         return id;
     }
